@@ -113,7 +113,11 @@ def fetch_conversations(limit: int = 40) -> List[Dict]:
     Fetch conversations from LinkedIn and normalise them into a list of dicts
     ready to be stored in the database.
     """
-    client = _get_client()
+    try:
+        client = _get_client()
+    except RuntimeError:
+        raise  # Let the router handle this
+
     own_id = _own_profile_id()
 
     raw = client.get_conversations()
@@ -217,8 +221,8 @@ def send_message(conversation_id: str, body: str) -> bool:
     Send a reply to a conversation. Returns True on success.
     conversation_id is the full URN string.
     """
-    client = _get_client()
     try:
+        client = _get_client()
         client.send_message(body, conversation_urn_id=conversation_id)
         logger.info("Message sent to conversation %s", conversation_id)
         return True

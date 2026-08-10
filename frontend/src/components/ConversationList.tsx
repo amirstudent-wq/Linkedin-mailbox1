@@ -44,18 +44,15 @@ function StatusBadge({ conv }: { conv: Conversation }) {
   }
   if (conv.awaiting_reply) {
     return (
-      <AlertCircle
-        className="w-4 h-4 text-amber-500 flex-shrink-0"
-        title="Awaiting your reply"
-      />
+      <span title="Awaiting your reply">
+        <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0" />
+      </span>
     );
   }
   if (conv.last_message_is_mine) {
     return (
-      <CheckCircle
-        className="w-4 h-4 text-green-500 flex-shrink-0"
-        title="You replied last"
-      />
+      <span title="You replied last">
+        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" /></span>
     );
   }
   return null;
