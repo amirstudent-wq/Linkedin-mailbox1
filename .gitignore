@@ -40,3 +40,6 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Outlook deliverability reports (contain recipient addresses)
+outlook-deliverability/reports/
